@@ -47,6 +47,7 @@ class _ResultsPageState extends State<ResultsPage> {
     double numberOfBattery = (sizeOfBattery) / widget.ampereHrOfEachBattery;
     double sizeOfChargeController =
         (peakCapacity / widget.voltageOfBattery) * 1.25;
+    int latitude = widget.tiltAngle - 2;
 
     return Scaffold(
         appBar: AppBar(

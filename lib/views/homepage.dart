@@ -161,11 +161,26 @@ class _HomePageState extends State<HomePage> {
                             int.parse(wattsOfEachLed.text.trim());
                         int ampereHrOfEachBatteryInt =
                             int.parse(ampereHrOfEachBattery.text.trim());
+                        int tiltAngleInt = int.parse(tiltAngle.text.trim());
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => ResultsPage(
                                       lengthOfTheRoad: lengthOfRoadInt,
+                                      widthOfTheRoad: widthOfTheRoadInt,
+                                      numberOf100Lightening:
+                                          numberOf100LighteningInt,
+                                      numberOf50Lightening:
+                                          numberOf50LighteningInt,
+                                      voltageOfBattery: voltageOfBatteryInt,
+                                      wattsOfEachSolarPanel:
+                                          wattsOfEachSolarPanelInt,
+                                      daysOfAutonomyOfBattery:
+                                          daysOfAutonomyOfBatteryInt,
+                                      wattsOfEachLed: wattsOfEachLedInt,
+                                      ampereHrOfEachBattery:
+                                          ampereHrOfEachBatteryInt,
+                                      tiltAngle: tiltAngleInt,
                                     )));
                       },
                       child: Text("Submit")),

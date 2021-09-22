@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -19,7 +20,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   // TextControllers
   TextEditingController lengthOfTheRoad;
   TextEditingController widthOfTheRoad;
@@ -62,49 +62,103 @@ class _HomePageState extends State<HomePage> {
     daysOfAutonomyOfBattery.dispose();
     wattsOfEachLed.dispose();
     ampereHrOfEachBattery.dispose();
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _numberOfPanelsFormState,
-          child: Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: Column(
-
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                VariableWidget(variableName: "Length Of Road", controller: lengthOfTheRoad,),
-                FlatButton(onPressed: () {
-                  print(lengthOfTheRoad.text);
-                }, child: Text("Submit"))
-
-              ],
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title),
+        ),
+        body: SingleChildScrollView(
+          child: Form(
+            key: _numberOfPanelsFormState,
+            child: Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  VariableWidget(
+                    variableName: "Length Of Road",
+                    controller: lengthOfTheRoad,
+                    hintTextForTextField: "Length of road",
+                  ),
+                  VariableWidget(
+                    variableName: "Width Of Road",
+                    controller: widthOfTheRoad,
+                    hintTextForTextField: "Width Of Road",
+                  ),
+                  VariableWidget(
+                    variableName: "Number of Hours of 100% lightening",
+                    controller: numberOf100Lightening,
+                    hintTextForTextField: "100% hours",
+                  ),
+                  VariableWidget(
+                    variableName: "Number of hours of 50% lightening",
+                    controller: numberOf50Lightening,
+                    hintTextForTextField: "50% hours",
+                  ),
+                  VariableWidget(
+                    variableName: "Voltage of Battery",
+                    controller: voltageOfBattery,
+                    hintTextForTextField: "Voltage of Battery",
+                  ),
+                  VariableWidget(
+                    variableName: "Watts of Each solar panel",
+                    controller: wattsOfEachSolarPanel,
+                    hintTextForTextField: "Watts of Each Panel",
+                  ),
+                  VariableWidget(
+                    variableName: "Days of Autonomy of Battery",
+                    controller: daysOfAutonomyOfBattery,
+                    hintTextForTextField: "Days of Autonomy",
+                  ),
+                  VariableWidget(
+                    variableName: "Watts of Each LED",
+                    controller: wattsOfEachLed,
+                    hintTextForTextField: "Watts of Each LED",
+                  ),
+                  VariableWidget(
+                    variableName: "Ampere-hr of Each Battery",
+                    controller: ampereHrOfEachBattery,
+                    hintTextForTextField: "Ampere-Hr of Each battery",
+                  ),
+                  VariableWidget(
+                    variableName: "Tilt Angle",
+                    controller: ampereHrOfEachBattery,
+                    hintTextForTextField: "Tilt Angle",
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        print(lengthOfTheRoad.text);
+                      },
+                      child: Text("Submit")),
+                  SizedBox(
+                    height: 30,
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      )
+        )
 // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        );
   }
 }
 
 class VariableWidget extends StatefulWidget {
   TextEditingController controller;
   String variableName;
+  String hintTextForTextField;
 
-  VariableWidget({
-    Key key, this.controller, this.variableName
-  }) : super(key: key);
+  VariableWidget(
+      {Key key, this.controller, this.variableName, this.hintTextForTextField})
+      : super(key: key);
 
   @override
   _VariableWidgetState createState() => _VariableWidgetState();
@@ -114,44 +168,53 @@ class _VariableWidgetState extends State<VariableWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      alignment: Alignment.center,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            widget.variableName,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 14),
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(top: 20),
+            child: Text(
+              widget.variableName,
+              style: TextStyle(color: Colors.black, fontSize: 14),
+            ),
           ),
           SizedBox(
             height: 10,
           ),
-          TextFormField(
-            autovalidateMode:
-            AutovalidateMode.onUserInteraction,
-            validator: (String value) {
-              if (value.isEmpty) {
-                return "The field cannot be left empty";
-              }
+          Container(
+            width: 200,
+            alignment: Alignment.centerLeft,
+            child: TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (String value) {
+                if (value.isEmpty) {
+                  return "The field cannot be left empty";
+                }
 
-              return null;
-            },
-            style: TextStyle(fontSize: 16),
-            controller: widget.controller,
-            decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue)),
-                focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red)),
-                contentPadding: EdgeInsets.symmetric(
-                    horizontal: 10, vertical: 0),
-                hintText: "Name Of Business",
-                hintStyle: TextStyle(
-                    color: Color(0xff747272), fontSize: 16),
-                border: OutlineInputBorder(
-                    borderRadius:
-                    BorderRadius.all(Radius.circular(10)))),
+                return null;
+              },
+              style: TextStyle(fontSize: 16),
+              controller: widget.controller,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(color: Colors.blue)),
+                  focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red)),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  hintText: widget.hintTextForTextField,
+                  hintStyle: TextStyle(color: Color(0xff747272), fontSize: 16),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)))),
+            ),
           ),
         ],
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'results.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
 
@@ -30,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   TextEditingController daysOfAutonomyOfBattery;
   TextEditingController wattsOfEachLed;
   TextEditingController ampereHrOfEachBattery;
+  TextEditingController tiltAngle;
 
   //keyform state
   final _numberOfPanelsFormState = GlobalKey<FormState>();
@@ -47,6 +50,7 @@ class _HomePageState extends State<HomePage> {
     daysOfAutonomyOfBattery = TextEditingController();
     wattsOfEachLed = TextEditingController();
     ampereHrOfEachBattery = TextEditingController();
+    tiltAngle = TextEditingController();
   }
 
   @override
@@ -62,6 +66,7 @@ class _HomePageState extends State<HomePage> {
     daysOfAutonomyOfBattery.dispose();
     wattsOfEachLed.dispose();
     ampereHrOfEachBattery.dispose();
+    tiltAngle.dispose();
   }
 
   @override
@@ -135,7 +140,33 @@ class _HomePageState extends State<HomePage> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        print(lengthOfTheRoad.text);
+                        _numberOfPanelsFormState.currentState.validate();
+
+                        // defining the parameters
+                        int lengthOfRoadInt =
+                            int.parse(lengthOfTheRoad.text.trim());
+                        int widthOfTheRoadInt =
+                            int.parse(widthOfTheRoad.text.trim());
+                        int numberOf100LighteningInt =
+                            int.parse(numberOf100Lightening.text.trim());
+                        int numberOf50LighteningInt =
+                            int.parse(numberOf50Lightening.text.trim());
+                        int voltageOfBatteryInt =
+                            int.parse(voltageOfBattery.text.trim());
+                        int wattsOfEachSolarPanelInt =
+                            int.parse(wattsOfEachSolarPanel.text.trim());
+                        int daysOfAutonomyOfBatteryInt =
+                            int.parse(daysOfAutonomyOfBattery.text.trim());
+                        int wattsOfEachLedInt =
+                            int.parse(wattsOfEachLed.text.trim());
+                        int ampereHrOfEachBatteryInt =
+                            int.parse(ampereHrOfEachBattery.text.trim());
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ResultsPage(
+                                      lengthOfTheRoad: lengthOfRoadInt,
+                                    )));
                       },
                       child: Text("Submit")),
                   SizedBox(

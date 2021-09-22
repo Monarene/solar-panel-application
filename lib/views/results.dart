@@ -50,10 +50,29 @@ class _ResultsPageState extends State<ResultsPage> {
     int latitude = widget.tiltAngle - 2;
 
     return Scaffold(
-        appBar: AppBar(
-      // Here we take the value from the MyHomePage object that was created by
-      // the App.build method, and use it to set our appbar title.
-      title: Text("Results page"),
-    ));
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text("Results page"),
+      ),
+      body: SafeArea(
+        child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Number of Leds: $numberOfleds"),
+                Text("Total Load in watt hour : $totalLoadInWattHour"),
+                Text("Height Of Pole: $heightOfPoles"),
+                Text("Peak Capacity: $peakCapacity"),
+                Text("Number of solar panels: $numberOfSolarpanels"),
+                Text("Size of battery: $sizeOfBattery"),
+                Text("Number of Battery; $numberOfBattery"),
+                Text("Size of charge controller: $sizeOfChargeController"),
+                Text("Latitude: $latitude"),
+              ],
+            )),
+      ),
+    );
   }
 }

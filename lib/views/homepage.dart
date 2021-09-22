@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   VariableWidget(
                     variableName: "Tilt Angle",
-                    controller: ampereHrOfEachBattery,
+                    controller: tiltAngle,
                     hintTextForTextField: "Tilt Angle",
                   ),
                   SizedBox(

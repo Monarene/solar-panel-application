@@ -126,11 +126,6 @@ class _HomePageState extends State<HomePage> {
                     hintTextForTextField: "Watts of Each LED",
                   ),
                   VariableWidget(
-                    variableName: "Ampere-hr of Each Battery",
-                    controller: ampereHrOfEachBattery,
-                    hintTextForTextField: "Ampere-Hr of Each battery",
-                  ),
-                  VariableWidget(
                     variableName: "Tilt Angle",
                     controller: tiltAngle,
                     hintTextForTextField: "Tilt Angle",
@@ -159,8 +154,7 @@ class _HomePageState extends State<HomePage> {
                             int.parse(daysOfAutonomyOfBattery.text.trim());
                         int wattsOfEachLedInt =
                             int.parse(wattsOfEachLed.text.trim());
-                        int ampereHrOfEachBatteryInt =
-                            int.parse(ampereHrOfEachBattery.text.trim());
+
                         int tiltAngleInt = int.parse(tiltAngle.text.trim());
                         Navigator.push(
                             context,
@@ -178,8 +172,6 @@ class _HomePageState extends State<HomePage> {
                                       daysOfAutonomyOfBattery:
                                           daysOfAutonomyOfBatteryInt,
                                       wattsOfEachLed: wattsOfEachLedInt,
-                                      ampereHrOfEachBattery:
-                                          ampereHrOfEachBatteryInt,
                                       tiltAngle: tiltAngleInt,
                                     )));
                       },

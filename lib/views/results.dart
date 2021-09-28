@@ -9,7 +9,6 @@ class ResultsPage extends StatefulWidget {
   int wattsOfEachSolarPanel;
   int daysOfAutonomyOfBattery;
   int wattsOfEachLed;
-  int ampereHrOfEachBattery;
   int tiltAngle;
 
   ResultsPage(
@@ -21,7 +20,6 @@ class ResultsPage extends StatefulWidget {
       this.wattsOfEachSolarPanel,
       this.daysOfAutonomyOfBattery,
       this.wattsOfEachLed,
-      this.ampereHrOfEachBattery,
       this.tiltAngle});
 
   @override
@@ -38,13 +36,16 @@ class _ResultsPageState extends State<ResultsPage> {
         widget.numberOf100Lightening *
         0.5 *
         widget.numberOf50Lightening);
+    double amphereHr =
+        (totalLoadInWattHour / (0.85 * widget.voltageOfBattery)) *
+            widget.daysOfAutonomyOfBattery;
     double heightOfPoles = (2 / 3 * widget.widthOfTheRoad);
     double peakCapacity = (totalLoadInWattHour * 1.3) / 3.2;
     double numberOfSolarpanels = (peakCapacity / widget.wattsOfEachSolarPanel);
     double sizeOfBattery =
         (totalLoadInWattHour * widget.daysOfAutonomyOfBattery * 2 * 1.25) /
             widget.voltageOfBattery;
-    double numberOfBattery = (sizeOfBattery) / widget.ampereHrOfEachBattery;
+    double numberOfBattery = (sizeOfBattery) / amphereHr;
     double sizeOfChargeController =
         (peakCapacity / widget.voltageOfBattery) * 1.25;
     int latitude = widget.tiltAngle - 2;
@@ -68,9 +69,10 @@ class _ResultsPageState extends State<ResultsPage> {
                 Text("Number of solar panels: ${numberOfSolarpanels.ceil()}"),
                 Text("Size of battery: ${sizeOfBattery.ceil()}"),
                 Text("Number of Battery; ${numberOfBattery.ceil()}"),
+                Text("Amphere Hour of the Battery; ${amphereHr.ceil()}"),
                 Text(
                     "Size of charge controller: ${sizeOfChargeController.ceil()}"),
-                Text("Latitude: ${latitude.ceil()}"),
+                Text("Tilt Angle: ${latitude.ceil()}"),
               ],
             )),
       ),

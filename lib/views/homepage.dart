@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                     hintTextForTextField: "Watts of Each LED",
                   ),
                   VariableWidget(
-                    variableName: "Tilt Angle",
+                    variableName: "Latitude",
                     controller: tiltAngle,
                     hintTextForTextField: "Tilt Angle",
                   ),

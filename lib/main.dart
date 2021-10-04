@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.yellow,
       ),
       home: HomePage(title: 'Solar Panel Calculator'),
@@ -20,4 +19,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
+// Flutter build command flutter build apk --release

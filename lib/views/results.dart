@@ -29,13 +29,11 @@ class ResultsPage extends StatefulWidget {
 class _ResultsPageState extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
-    int numberOfleds =
-        ((widget.lengthOfTheRoad * widget.widthOfTheRoad) * 2) - 1;
+    double numberOfleds =
+        ((widget.lengthOfTheRoad / widget.widthOfTheRoad) * 2) - 1;
     double totalLoadInWattHour = (numberOfleds *
         widget.wattsOfEachLed *
-        widget.numberOf100Lightening *
-        0.5 *
-        widget.numberOf50Lightening);
+        (widget.numberOf100Lightening + (0.5 * widget.numberOf50Lightening)));
     double amphereHr =
         (totalLoadInWattHour / (0.85 * widget.voltageOfBattery)) *
             widget.daysOfAutonomyOfBattery;
@@ -62,20 +60,81 @@ class _ResultsPageState extends State<ResultsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Number of Leds: ${numberOfleds.ceil()}"),
-                Text("Total Load in watt hour : ${totalLoadInWattHour.ceil()}"),
-                Text("Height Of Pole: ${heightOfPoles.ceil()}"),
-                Text("Peak Capacity: ${peakCapacity.ceil()}"),
-                Text("Number of solar panels: ${numberOfSolarpanels.ceil()}"),
-                Text("Size of battery: ${sizeOfBattery.ceil()}"),
-                Text("Number of Battery; ${numberOfBattery.ceil()}"),
-                Text("Amphere Hour of the Battery; ${amphereHr.ceil()}"),
-                Text(
-                    "Size of charge controller: ${sizeOfChargeController.ceil()}"),
-                Text("Tilt Angle: ${latitude.ceil()}"),
+                ResultWidget(
+                  resultValue: "$numberOfleds",
+                  textValue: "Number of LEDs",
+                  units: " ",
+                ),
+                ResultWidget(
+                  textValue: "Total Load in watt hour",
+                  resultValue: "${totalLoadInWattHour.ceil()}",
+                  units: "WattHour",
+                ),
+                ResultWidget(
+                  textValue: "Height Of Pole",
+                  resultValue: "${heightOfPoles.ceil()}",
+                  units: "meters",
+                ),
+                ResultWidget(
+                  textValue: "Peak Capacity",
+                  resultValue: "${peakCapacity.ceil()}",
+                  units: "WattHr",
+                ),
+                ResultWidget(
+                  textValue: "Number of solar panels",
+                  resultValue: "${numberOfSolarpanels.ceil()}",
+                  units: " ",
+                ),
+                ResultWidget(
+                  textValue: "Size of battery",
+                  resultValue: "${sizeOfBattery.ceil()}",
+                  units: " ",
+                ),
+                ResultWidget(
+                    textValue: "Number of Battery",
+                    resultValue: "${numberOfBattery.ceil()}",
+                    units: " "),
+                ResultWidget(
+                    textValue: "Amphere Hour of the Battery",
+                    resultValue: "${amphereHr.ceil()}"),
+                ResultWidget(
+                  textValue: "Size of charge controller",
+                  resultValue: "${sizeOfChargeController.ceil()}",
+                  units: " ",
+                ),
+                ResultWidget(
+                  textValue: "Tilt Angle",
+                  resultValue: "${latitude.ceil()}",
+                  units: "degrees",
+                ),
               ],
             )),
       ),
+    );
+  }
+}
+
+class ResultWidget extends StatelessWidget {
+  final String resultValue;
+  final String textValue;
+  final String units;
+  const ResultWidget({Key key, this.resultValue, this.textValue, this.units})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "$textValue",
+          style: TextStyle(fontSize: 20),
+        ),
+        Text("$resultValue $units", style: TextStyle(fontSize: 16)),
+        SizedBox(
+          height: 10,
+        ),
+      ],
     );
   }
 }

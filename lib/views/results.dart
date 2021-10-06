@@ -88,7 +88,7 @@ class _ResultsPageState extends State<ResultsPage> {
                 ResultWidget(
                   textValue: "Size of battery",
                   resultValue: "${sizeOfBattery.ceil()}",
-                  units: " ",
+                  units: "Amps",
                 ),
                 ResultWidget(
                     textValue: "Number of Battery",
@@ -96,7 +96,8 @@ class _ResultsPageState extends State<ResultsPage> {
                     units: " "),
                 ResultWidget(
                     textValue: "Amphere Hour of the Battery",
-                    resultValue: "${amphereHr.ceil()}"),
+                    resultValue: "${amphereHr.ceil()}",
+                    units: "Amps"),
                 ResultWidget(
                   textValue: "Size of charge controller",
                   resultValue: "${sizeOfChargeController.ceil()}",

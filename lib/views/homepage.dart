@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                   VariableWidget(
                     variableName: "Latitude",
                     controller: tiltAngle,
-                    hintTextForTextField: "Tilt Angle",
+                    hintTextForTextField: "Latitude",
                   ),
                   SizedBox(
                     height: 30,

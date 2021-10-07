@@ -66,19 +66,19 @@ class _ResultsPageState extends State<ResultsPage> {
                   units: " ",
                 ),
                 ResultWidget(
-                  textValue: "Total Load in watt hour",
+                  textValue: "Total Load in watt hour (watthr)",
                   resultValue: "${totalLoadInWattHour.ceil()}",
                   units: "WattHour",
                 ),
                 ResultWidget(
-                  textValue: "Height Of Pole",
+                  textValue: "Height Of Pole (metres)",
                   resultValue: "${heightOfPoles.ceil()}",
                   units: "meters",
                 ),
                 ResultWidget(
-                  textValue: "Peak Capacity",
+                  textValue: "Peak Capacity (watthr)",
                   resultValue: "${peakCapacity.ceil()}",
-                  units: "WattHr",
+                  units: "watthr",
                 ),
                 ResultWidget(
                   textValue: "Number of solar panels",
@@ -86,25 +86,25 @@ class _ResultsPageState extends State<ResultsPage> {
                   units: " ",
                 ),
                 ResultWidget(
-                  textValue: "Size of battery",
+                  textValue: "Size of battery (Ah)",
                   resultValue: "${sizeOfBattery.ceil()}",
-                  units: "Amps",
+                  units: "(Ah)",
                 ),
                 ResultWidget(
                     textValue: "Number of Battery",
                     resultValue: "${numberOfBattery.ceil()}",
                     units: " "),
                 ResultWidget(
-                    textValue: "Amphere Hour of the Battery",
+                    textValue: "Amphere Hour of the Battery (AmpereHour)",
                     resultValue: "${amphereHr.ceil()}",
-                    units: "Amps"),
+                    units: "Ah"),
                 ResultWidget(
-                  textValue: "Size of charge controller",
+                  textValue: "Size of charge controller (Ampere)",
                   resultValue: "${sizeOfChargeController.ceil()}",
-                  units: " ",
+                  units: "amps",
                 ),
                 ResultWidget(
-                  textValue: "Tilt Angle",
+                  textValue: "Tilt Angle of solar panel",
                   resultValue: "${latitude.ceil()}",
                   units: "degrees",
                 ),

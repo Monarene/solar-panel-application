@@ -86,42 +86,42 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   VariableWidget(
-                    variableName: "Length Of Road",
+                    variableName: "Length Of Road (metres)",
                     controller: lengthOfTheRoad,
                     hintTextForTextField: "Length of road",
                   ),
                   VariableWidget(
-                    variableName: "Width Of Road",
+                    variableName: "Width Of Road (metres)",
                     controller: widthOfTheRoad,
                     hintTextForTextField: "Width Of Road",
                   ),
                   VariableWidget(
-                    variableName: "Number of Hours of 100% lightening",
+                    variableName: "Number of Hours of 100% lightening (hours)",
                     controller: numberOf100Lightening,
                     hintTextForTextField: "100% hours",
                   ),
                   VariableWidget(
-                    variableName: "Number of hours of 50% lightening",
+                    variableName: "Number of hours of 50% lightening (hours)",
                     controller: numberOf50Lightening,
                     hintTextForTextField: "50% hours",
                   ),
                   VariableWidget(
-                    variableName: "Voltage of Battery",
+                    variableName: "Voltage of Battery (volts)",
                     controller: voltageOfBattery,
                     hintTextForTextField: "Voltage of Battery",
                   ),
                   VariableWidget(
-                    variableName: "Watts of Each solar panel",
+                    variableName: "Watts of Each solar panel (watts)",
                     controller: wattsOfEachSolarPanel,
                     hintTextForTextField: "Watts of Each Panel",
                   ),
                   VariableWidget(
-                    variableName: "Days of Autonomy of Battery",
+                    variableName: "Days of Autonomy of Battery (days)",
                     controller: daysOfAutonomyOfBattery,
                     hintTextForTextField: "Days of Autonomy",
                   ),
                   VariableWidget(
-                    variableName: "Watts of Each LED",
+                    variableName: "Watts of Each LED (watts)",
                     controller: wattsOfEachLed,
                     hintTextForTextField: "Watts of Each LED",
                   ),

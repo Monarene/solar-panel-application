@@ -41,9 +41,9 @@ class _ResultsPageState extends State<ResultsPage> {
     double peakCapacity = (totalLoadInWattHour * 1.3) / 3.2;
     double numberOfSolarpanels = (peakCapacity / widget.wattsOfEachSolarPanel);
     double sizeOfBattery =
-        (totalLoadInWattHour * widget.daysOfAutonomyOfBattery * 2 * 1.25) /
+        (totalLoadInWattHour * widget.daysOfAutonomyOfBattery * 2 * 3 * 1.25) /
             widget.voltageOfBattery;
-    double numberOfBattery = (sizeOfBattery) / amphereHr;
+    double numberOfBattery = (sizeOfBattery) / 175;
     double sizeOfChargeController =
         (peakCapacity / widget.voltageOfBattery) * 1.25;
     int latitude = widget.tiltAngle - 2;

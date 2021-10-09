@@ -194,15 +194,25 @@ class VariableWidget extends StatefulWidget {
   String variableName;
   String hintTextForTextField;
 
-  VariableWidget(
-      {Key key, this.controller, this.variableName, this.hintTextForTextField})
-      : super(key: key);
+  VariableWidget({
+    Key key,
+    this.controller,
+    this.variableName,
+    this.hintTextForTextField,
+  }) : super(key: key);
 
   @override
   _VariableWidgetState createState() => _VariableWidgetState();
 }
 
 class _VariableWidgetState extends State<VariableWidget> {
+  String isEmpty(String value) {
+    if (value.isEmpty) {
+      return "The field cannot be left empty";
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

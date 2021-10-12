@@ -219,10 +219,50 @@ class _HomePageState extends State<HomePage> {
                     controller: daysOfAutonomyOfBattery,
                     hintTextForTextField: "Days of Autonomy",
                   ),
-                  VariableWidget(
-                    variableName: "Watts of Each LED (watts)",
-                    controller: wattsOfEachLed,
-                    hintTextForTextField: "Watts of Each LED",
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.only(top: 20),
+                          child: Text(
+                            "Watts of Each LED (watts) ",
+                            style: TextStyle(color: Colors.black, fontSize: 14),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: 100,
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              border: Border.all(color: Colors.black87)),
+                          child: DropdownButton<int>(
+                            value: selectedWattsOfEachLed,
+                            items: wattOfLed.map((int value) {
+                              return DropdownMenuItem<int>(
+                                value: value,
+                                child: Text("$value"),
+                              );
+                            }).toList(),
+                            onChanged: (int newValue) {
+                              setState(() {
+                                selectedWattsOfEachLed = newValue;
+                                wattsOfEachLed.text = newValue.toString();
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   VariableWidget(
                     variableName: "Latitude",

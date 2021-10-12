@@ -388,9 +388,9 @@ class _VariableWidgetState extends State<VariableWidget> {
               },
               style: TextStyle(fontSize: 16),
               controller: widget.controller,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
               inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9 .]')),
               ],
               decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(

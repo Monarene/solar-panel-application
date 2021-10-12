@@ -35,21 +35,31 @@ class _HomePageState extends State<HomePage> {
   TextEditingController tiltAngle;
   TextEditingController rating;
 
+  // Defining the list values
+  List<int> voltageList = [12, 24, 48];
+  List<int> wattOfSolarPanelList = [250, 300, 350, 400];
+  List<int> wattOfLed = [10, 20, 30, 40, 50];
+
+  // String selected values
+  int selectedVoltage = 12;
+  int selectedWattOfSolarPanel = 250;
+  int selectedWattsOfEachLed = 10;
   //keyform state
   final _numberOfPanelsFormState = GlobalKey<FormState>();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     lengthOfTheRoad = TextEditingController();
     widthOfTheRoad = TextEditingController();
     numberOf100Lightening = TextEditingController();
     numberOf50Lightening = TextEditingController();
-    voltageOfBattery = TextEditingController();
-    wattsOfEachSolarPanel = TextEditingController();
+    voltageOfBattery = TextEditingController(text: selectedVoltage.toString());
+    wattsOfEachSolarPanel =
+        TextEditingController(text: selectedWattOfSolarPanel.toString());
     daysOfAutonomyOfBattery = TextEditingController();
-    wattsOfEachLed = TextEditingController();
+    wattsOfEachLed =
+        TextEditingController(text: selectedWattsOfEachLed.toString());
     ampereHrOfEachBattery = TextEditingController();
     tiltAngle = TextEditingController();
     rating = TextEditingController();
@@ -113,15 +123,96 @@ class _HomePageState extends State<HomePage> {
                     controller: numberOf50Lightening,
                     hintTextForTextField: "50% hours",
                   ),
-                  VariableWidget(
-                    variableName: "Voltage of Battery (volts)",
-                    controller: voltageOfBattery,
-                    hintTextForTextField: "Voltage of Battery",
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.only(top: 20),
+                          child: Text(
+                            "Voltage of the battery (volts) ",
+                            style: TextStyle(color: Colors.black, fontSize: 14),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: 100,
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              border: Border.all(color: Colors.black87)),
+                          child: DropdownButton<int>(
+                            value: selectedVoltage,
+                            items: voltageList.map((int value) {
+                              return DropdownMenuItem<int>(
+                                value: value,
+                                child: Text("$value"),
+                              );
+                            }).toList(),
+                            onChanged: (int newValue) {
+                              setState(() {
+                                selectedVoltage = newValue;
+                                voltageOfBattery.text = newValue.toString();
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  VariableWidget(
-                    variableName: "Watts of Each solar panel (watts)",
-                    controller: wattsOfEachSolarPanel,
-                    hintTextForTextField: "Watts of Each Panel",
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.only(top: 20),
+                          child: Text(
+                            "Watts of Each solar panel (watts) ",
+                            style: TextStyle(color: Colors.black, fontSize: 14),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: 100,
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              border: Border.all(color: Colors.black87)),
+                          child: DropdownButton<int>(
+                            value: selectedWattOfSolarPanel,
+                            items: wattOfSolarPanelList.map((int value) {
+                              return DropdownMenuItem<int>(
+                                value: value,
+                                child: Text("$value"),
+                              );
+                            }).toList(),
+                            onChanged: (int newValue) {
+                              setState(() {
+                                selectedWattOfSolarPanel = newValue;
+                                wattsOfEachSolarPanel.text =
+                                    newValue.toString();
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   VariableWidget(
                     variableName: "Days of Autonomy of Battery (days)",
@@ -272,6 +363,64 @@ class _VariableWidgetState extends State<VariableWidget> {
                   hintStyle: TextStyle(color: Color(0xff747272), fontSize: 16),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)))),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DropDownListForm extends StatefulWidget {
+  TextEditingController controller;
+  List<int> variableList;
+  String variableName;
+  int selectedValue;
+
+  DropDownListForm(
+      {this.controller,
+      this.variableList,
+      this.variableName,
+      this.selectedValue});
+  @override
+  _DropDownListFormState createState() => _DropDownListFormState();
+}
+
+class _DropDownListFormState extends State<DropDownListForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      alignment: Alignment.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(top: 20),
+            child: Text(
+              widget.variableName,
+              style: TextStyle(color: Colors.black, fontSize: 14),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: 200,
+            alignment: Alignment.centerLeft,
+            child: DropdownButton<int>(
+              items: widget.variableList.map((int value) {
+                return DropdownMenuItem<int>(
+                  value: widget.selectedValue,
+                  child: Text("$value"),
+                );
+              }).toList(),
+              onChanged: (int newValue) {
+                setState(() {
+                  widget.selectedValue = newValue;
+                });
+              },
             ),
           ),
         ],

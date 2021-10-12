@@ -10,6 +10,7 @@ class ResultsPage extends StatefulWidget {
   int daysOfAutonomyOfBattery;
   int wattsOfEachLed;
   int tiltAngle;
+  int rating;
 
   ResultsPage(
       {this.lengthOfTheRoad,
@@ -20,7 +21,8 @@ class ResultsPage extends StatefulWidget {
       this.wattsOfEachSolarPanel,
       this.daysOfAutonomyOfBattery,
       this.wattsOfEachLed,
-      this.tiltAngle});
+      this.tiltAngle,
+      this.rating});
 
   @override
   _ResultsPageState createState() => _ResultsPageState();
@@ -43,7 +45,7 @@ class _ResultsPageState extends State<ResultsPage> {
     double sizeOfBattery =
         (totalLoadInWattHour * widget.daysOfAutonomyOfBattery * 2 * 3 * 1.25) /
             widget.voltageOfBattery;
-    double numberOfBattery = (sizeOfBattery) / 175;
+    double numberOfBattery = (sizeOfBattery) / widget.rating;
     double sizeOfChargeController =
         (peakCapacity / widget.voltageOfBattery) * 1.25;
     int latitude = widget.tiltAngle - 2;

@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
   TextEditingController wattsOfEachLed;
   TextEditingController ampereHrOfEachBattery;
   TextEditingController tiltAngle;
+  TextEditingController rating;
 
   //keyform state
   final _numberOfPanelsFormState = GlobalKey<FormState>();
@@ -51,6 +52,7 @@ class _HomePageState extends State<HomePage> {
     wattsOfEachLed = TextEditingController();
     ampereHrOfEachBattery = TextEditingController();
     tiltAngle = TextEditingController();
+    rating = TextEditingController();
   }
 
   @override
@@ -67,6 +69,7 @@ class _HomePageState extends State<HomePage> {
     wattsOfEachLed.dispose();
     ampereHrOfEachBattery.dispose();
     tiltAngle.dispose();
+    rating.dispose();
   }
 
   @override
@@ -94,6 +97,11 @@ class _HomePageState extends State<HomePage> {
                     variableName: "Width Of Road (metres)",
                     controller: widthOfTheRoad,
                     hintTextForTextField: "Width Of Road",
+                  ),
+                  VariableWidget(
+                    variableName: "Rating of the Battery (Amps)",
+                    controller: rating,
+                    hintTextForTextField: "Battery rating",
                   ),
                   VariableWidget(
                     variableName: "Number of Hours of 100% lightening (hours)",
@@ -135,45 +143,47 @@ class _HomePageState extends State<HomePage> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        _numberOfPanelsFormState.currentState.validate();
-
                         // defining the parameters
-                        int lengthOfRoadInt =
-                            int.parse(lengthOfTheRoad.text.trim());
-                        int widthOfTheRoadInt =
-                            int.parse(widthOfTheRoad.text.trim());
-                        int numberOf100LighteningInt =
-                            int.parse(numberOf100Lightening.text.trim());
-                        int numberOf50LighteningInt =
-                            int.parse(numberOf50Lightening.text.trim());
-                        int voltageOfBatteryInt =
-                            int.parse(voltageOfBattery.text.trim());
-                        int wattsOfEachSolarPanelInt =
-                            int.parse(wattsOfEachSolarPanel.text.trim());
-                        int daysOfAutonomyOfBatteryInt =
-                            int.parse(daysOfAutonomyOfBattery.text.trim());
-                        int wattsOfEachLedInt =
-                            int.parse(wattsOfEachLed.text.trim());
+                        if (_numberOfPanelsFormState.currentState.validate()) {
+                          int lengthOfRoadInt =
+                              int.parse(lengthOfTheRoad.text.trim());
+                          int widthOfTheRoadInt =
+                              int.parse(widthOfTheRoad.text.trim());
+                          int numberOf100LighteningInt =
+                              int.parse(numberOf100Lightening.text.trim());
+                          int numberOf50LighteningInt =
+                              int.parse(numberOf50Lightening.text.trim());
+                          int voltageOfBatteryInt =
+                              int.parse(voltageOfBattery.text.trim());
+                          int wattsOfEachSolarPanelInt =
+                              int.parse(wattsOfEachSolarPanel.text.trim());
+                          int daysOfAutonomyOfBatteryInt =
+                              int.parse(daysOfAutonomyOfBattery.text.trim());
+                          int wattsOfEachLedInt =
+                              int.parse(wattsOfEachLed.text.trim());
+                          int ratingInt = int.parse(rating.text.trim());
 
-                        int tiltAngleInt = int.parse(tiltAngle.text.trim());
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ResultsPage(
-                                      lengthOfTheRoad: lengthOfRoadInt,
-                                      widthOfTheRoad: widthOfTheRoadInt,
-                                      numberOf100Lightening:
-                                          numberOf100LighteningInt,
-                                      numberOf50Lightening:
-                                          numberOf50LighteningInt,
-                                      voltageOfBattery: voltageOfBatteryInt,
-                                      wattsOfEachSolarPanel:
-                                          wattsOfEachSolarPanelInt,
-                                      daysOfAutonomyOfBattery:
-                                          daysOfAutonomyOfBatteryInt,
-                                      wattsOfEachLed: wattsOfEachLedInt,
-                                      tiltAngle: tiltAngleInt,
-                                    )));
+                          int tiltAngleInt = int.parse(tiltAngle.text.trim());
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ResultsPage(
+                                        lengthOfTheRoad: lengthOfRoadInt,
+                                        widthOfTheRoad: widthOfTheRoadInt,
+                                        numberOf100Lightening:
+                                            numberOf100LighteningInt,
+                                        numberOf50Lightening:
+                                            numberOf50LighteningInt,
+                                        voltageOfBattery: voltageOfBatteryInt,
+                                        wattsOfEachSolarPanel:
+                                            wattsOfEachSolarPanelInt,
+                                        daysOfAutonomyOfBattery:
+                                            daysOfAutonomyOfBatteryInt,
+                                        wattsOfEachLed: wattsOfEachLedInt,
+                                        tiltAngle: tiltAngleInt,
+                                        rating: ratingInt,
+                                      )));
+                        }
                       },
                       child: Text("Submit")),
                   SizedBox(

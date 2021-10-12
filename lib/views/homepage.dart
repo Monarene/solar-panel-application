@@ -276,25 +276,26 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         // defining the parameters
                         if (_numberOfPanelsFormState.currentState.validate()) {
-                          int lengthOfRoadInt =
-                              int.parse(lengthOfTheRoad.text.trim());
-                          int widthOfTheRoadInt =
-                              int.parse(widthOfTheRoad.text.trim());
-                          int numberOf100LighteningInt =
-                              int.parse(numberOf100Lightening.text.trim());
-                          int numberOf50LighteningInt =
-                              int.parse(numberOf50Lightening.text.trim());
-                          int voltageOfBatteryInt =
-                              int.parse(voltageOfBattery.text.trim());
-                          int wattsOfEachSolarPanelInt =
-                              int.parse(wattsOfEachSolarPanel.text.trim());
-                          int daysOfAutonomyOfBatteryInt =
-                              int.parse(daysOfAutonomyOfBattery.text.trim());
-                          int wattsOfEachLedInt =
-                              int.parse(wattsOfEachLed.text.trim());
-                          int ratingInt = int.parse(rating.text.trim());
+                          double lengthOfRoadInt =
+                              double.parse(lengthOfTheRoad.text.trim());
+                          double widthOfTheRoadInt =
+                              double.parse(widthOfTheRoad.text.trim());
+                          double numberOf100LighteningInt =
+                              double.parse(numberOf100Lightening.text.trim());
+                          double numberOf50LighteningInt =
+                              double.parse(numberOf50Lightening.text.trim());
+                          double voltageOfBatteryInt =
+                              double.parse(voltageOfBattery.text.trim());
+                          double wattsOfEachSolarPanelInt =
+                              double.parse(wattsOfEachSolarPanel.text.trim());
+                          double daysOfAutonomyOfBatteryInt =
+                              double.parse(daysOfAutonomyOfBattery.text.trim());
+                          double wattsOfEachLedInt =
+                              double.parse(wattsOfEachLed.text.trim());
+                          double ratingInt = double.parse(rating.text.trim());
 
-                          int tiltAngleInt = int.parse(tiltAngle.text.trim());
+                          double tiltAngleInt =
+                              double.parse(tiltAngle.text.trim());
                           Navigator.push(
                               context,
                               MaterialPageRoute(

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatefulWidget {
-  int lengthOfTheRoad;
-  int widthOfTheRoad;
-  int numberOf100Lightening;
-  int numberOf50Lightening;
-  int voltageOfBattery;
-  int wattsOfEachSolarPanel;
-  int daysOfAutonomyOfBattery;
-  int wattsOfEachLed;
-  int tiltAngle;
-  int rating;
+  double lengthOfTheRoad;
+  double widthOfTheRoad;
+  double numberOf100Lightening;
+  double numberOf50Lightening;
+  double voltageOfBattery;
+  double wattsOfEachSolarPanel;
+  double daysOfAutonomyOfBattery;
+  double wattsOfEachLed;
+  double tiltAngle;
+  double rating;
 
   ResultsPage(
       {this.lengthOfTheRoad,
@@ -48,7 +48,7 @@ class _ResultsPageState extends State<ResultsPage> {
     double numberOfBattery = (sizeOfBattery) / widget.rating;
     double sizeOfChargeController =
         (peakCapacity / widget.voltageOfBattery) * 1.25;
-    int latitude = widget.tiltAngle - 2;
+    double latitude = widget.tiltAngle - 2;
 
     return Scaffold(
       appBar: AppBar(
@@ -63,7 +63,7 @@ class _ResultsPageState extends State<ResultsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ResultWidget(
-                  resultValue: "$numberOfleds",
+                  resultValue: "${numberOfleds.ceil()}",
                   textValue: "Number of LEDs",
                   units: " ",
                 ),

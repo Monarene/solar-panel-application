@@ -37,12 +37,12 @@ class _HomePageState extends State<HomePage> {
 
   // Defining the list values
   List<int> voltageList = [12, 24, 48];
-  List<int> wattOfSolarPanelList = [250, 300, 350, 400];
+  List<int> wattOfSolarPanelList = [150, 180, 200, 250, 300, 350, 400];
   List<int> wattOfLed = [10, 20, 30, 40, 50];
 
   // String selected values
   int selectedVoltage = 12;
-  int selectedWattOfSolarPanel = 250;
+  int selectedWattOfSolarPanel = 150;
   int selectedWattsOfEachLed = 10;
   //keyform state
   final _numberOfPanelsFormState = GlobalKey<FormState>();

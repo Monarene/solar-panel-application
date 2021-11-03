@@ -43,12 +43,13 @@ class _ResultsPageState extends State<ResultsPage> {
     double peakCapacity = (totalLoadInWattHour * 1.3) / 3.2;
     double numberOfSolarpanels = (peakCapacity / widget.wattsOfEachSolarPanel);
     double sizeOfBattery =
-        (totalLoadInWattHour * widget.daysOfAutonomyOfBattery * 2 * 3 * 1.25) /
+        (totalLoadInWattHour * widget.daysOfAutonomyOfBattery * 1.25) /
             widget.voltageOfBattery;
     double numberOfBattery = (sizeOfBattery) / widget.rating;
     double sizeOfChargeController =
-        (peakCapacity / widget.voltageOfBattery) * 1.25;
+        (widget.wattsOfEachSolarPanel / widget.voltageOfBattery) * 1.25;
     double latitude = widget.tiltAngle - 2;
+    double poleSpacing = widget.lengthOfTheRoad / numberOfleds;
 
     return Scaffold(
       appBar: AppBar(
@@ -57,61 +58,73 @@ class _ResultsPageState extends State<ResultsPage> {
         title: Text("Results page"),
       ),
       body: SafeArea(
-        child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ResultWidget(
-                  resultValue: "${numberOfleds.ceil()}",
-                  textValue: "Number of LEDs",
-                  units: " ",
-                ),
-                ResultWidget(
-                  textValue: "Total Load in watt hour (watthr)",
-                  resultValue: "${totalLoadInWattHour.ceil()}",
-                  units: "WattHour",
-                ),
-                ResultWidget(
-                  textValue: "Height Of Pole (metres)",
-                  resultValue: "${heightOfPoles.ceil()}",
-                  units: "meters",
-                ),
-                ResultWidget(
-                  textValue: "Peak Capacity (watthr)",
-                  resultValue: "${peakCapacity.ceil()}",
-                  units: "watthr",
-                ),
-                ResultWidget(
-                  textValue: "Number of solar panels",
-                  resultValue: "${numberOfSolarpanels.ceil()}",
-                  units: " ",
-                ),
-                ResultWidget(
-                  textValue: "Size of battery (Ah)",
-                  resultValue: "${sizeOfBattery.ceil()}",
-                  units: "(Ah)",
-                ),
-                ResultWidget(
-                    textValue: "Number of Battery",
-                    resultValue: "${numberOfBattery.ceil()}",
-                    units: " "),
-                ResultWidget(
-                    textValue: "Amphere Hour of the Battery (AmpereHour)",
-                    resultValue: "${amphereHr.ceil()}",
-                    units: "Ah"),
-                ResultWidget(
-                  textValue: "Size of charge controller (Ampere)",
-                  resultValue: "${sizeOfChargeController.ceil()}",
-                  units: "amps",
-                ),
-                ResultWidget(
-                  textValue: "Tilt Angle of solar panel",
-                  resultValue: "${latitude.ceil()}",
-                  units: "degrees",
-                ),
-              ],
-            )),
+        child: SingleChildScrollView(
+          child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ResultWidget(
+                    resultValue: "${numberOfleds.ceil()}",
+                    textValue: "Number of LEDs",
+                    units: " ",
+                  ),
+                  ResultWidget(
+                    textValue: "Total Load in watt hour (watthr)",
+                    resultValue: "${totalLoadInWattHour.ceil()}",
+                    units: "WattHour",
+                  ),
+                  ResultWidget(
+                    textValue: "Height Of Pole (metres)",
+                    resultValue: "${heightOfPoles.ceil()}",
+                    units: "meters",
+                  ),
+                  ResultWidget(
+                    textValue: "Peak Capacity (watthr)",
+                    resultValue: "${peakCapacity.ceil()}",
+                    units: "watthr",
+                  ),
+                  ResultWidget(
+                    textValue: "Number of solar panels",
+                    resultValue: "${numberOfSolarpanels.ceil()}",
+                    units: " ",
+                  ),
+                  ResultWidget(
+                    textValue: "Size of battery (Ah)",
+                    resultValue: "${sizeOfBattery.ceil()}",
+                    units: "(Ah)",
+                  ),
+                  ResultWidget(
+                      textValue: "Number of Battery",
+                      resultValue: "${numberOfBattery.ceil()}",
+                      units: " "),
+                  ResultWidget(
+                      textValue: "Amphere Hour of the Battery (AmpereHour)",
+                      resultValue: "${amphereHr.ceil()}",
+                      units: "Ah"),
+                  ResultWidget(
+                    textValue: "Size of charge controller (Ampere)",
+                    resultValue: "${sizeOfChargeController.ceil()}",
+                    units: "amps",
+                  ),
+                  ResultWidget(
+                    textValue: "Tilt Angle of solar panel",
+                    resultValue: "${latitude.ceil()}",
+                    units: "degrees",
+                  ),
+                  ResultWidget(
+                    textValue: "Number of Poles",
+                    resultValue: "${numberOfleds.ceil()}",
+                    units: "",
+                  ),
+                  ResultWidget(
+                    textValue: "Pole Spacing",
+                    resultValue: "${poleSpacing.ceil()}",
+                    units: "metrees",
+                  ),
+                ],
+              )),
+        ),
       ),
     );
   }
@@ -126,18 +139,21 @@ class ResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "$textValue",
-          style: TextStyle(fontSize: 20),
-        ),
-        Text("$resultValue $units", style: TextStyle(fontSize: 16)),
-        SizedBox(
-          height: 10,
-        ),
-      ],
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "$textValue",
+            style: TextStyle(fontSize: 22),
+          ),
+          Text("$resultValue $units", style: TextStyle(fontSize: 16)),
+          SizedBox(
+            height: 10,
+          ),
+        ],
+      ),
     );
   }
 }

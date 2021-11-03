@@ -39,7 +39,7 @@ class _ResultsPageState extends State<ResultsPage> {
     double amphereHr =
         (totalLoadInWattHour / (0.85 * widget.voltageOfBattery)) *
             widget.daysOfAutonomyOfBattery;
-    double heightOfPoles = (2 / 3 * widget.widthOfTheRoad);
+    double heightOfPoles = ((1 / 3) * widget.widthOfTheRoad);
     double peakCapacity = (totalLoadInWattHour * 1.3) / 3.2;
     double numberOfSolarpanels = (peakCapacity / widget.wattsOfEachSolarPanel);
     double sizeOfBattery =
@@ -98,10 +98,6 @@ class _ResultsPageState extends State<ResultsPage> {
                       textValue: "Number of Battery",
                       resultValue: "${numberOfBattery.ceil()}",
                       units: " "),
-                  ResultWidget(
-                      textValue: "Amphere Hour of the Battery (AmpereHour)",
-                      resultValue: "${amphereHr.ceil()}",
-                      units: "Ah"),
                   ResultWidget(
                     textValue: "Size of charge controller (Ampere)",
                     resultValue: "${sizeOfChargeController.ceil()}",
